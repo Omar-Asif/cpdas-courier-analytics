@@ -1,5 +1,29 @@
 # CPDAS — Courier and Parcel Delivery Analytics System
 
+**Analytics dashboard for a Dhaka courier company: delivery performance, rider productivity,
+cash-on-delivery reconciliation, and text-similarity matching of free-form addresses to delivery
+zones.**
+
+`Python` · `Flask` · `SQLite` · `Jinja2` · `HTML/CSS` · no external libraries beyond Flask
+
+<!-- Add a dashboard screenshot here: ![CPDAS dashboard](docs/screenshot-dashboard.png) -->
+
+### Highlights
+
+- **Four analytics modules + reporting**: zone success and on-time rates, rider productivity and
+  failure rates, COD shortage detection, and five printable A4 operations reports.
+- **Address-to-zone matching** using TF-IDF cosine similarity, implemented from scratch with the
+  standard library, with an auto-assign threshold and a manual review queue for ties.
+- **Read-only by design**: the app only runs `SELECT` on business data; an automated audit in
+  `scripts/verify.py` fails the build if any write path appears.
+- **Verified against the specification**: a verification suite checks every examined figure, and
+  unit tests cover each formula against hand-built inputs.
+- **Documented engineering decisions**: the course specification contradicted itself in several
+  places; each conflict and its resolution is recorded in
+  [`docs/SPEC_DECISIONS.md`](docs/SPEC_DECISIONS.md).
+
+---
+
 A read-only analytics and reporting web application for the operations manager of
 **Dhrutogoti Courier**, a courier company in Dhaka. CPDAS reads five datasets that other,
 out-of-scope systems (booking counters, the riders' handheld scanner app, the cash office) already
